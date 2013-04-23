@@ -6,7 +6,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'jquery-rails'
+gem "haml"
+# gem "haml-rails"
 gem "mongoid", ">= 3.1.2"
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mini_magick', :git => 'git://github.com/probablycorey/mini_magick.git'
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
 gem "database_cleaner", ">= 1.0.0.RC1", :group => :test
 gem "mongoid-rspec", ">= 1.7.0", :group => :test
@@ -20,3 +24,7 @@ gem "quiet_assets", ">= 1.0.2", :group => :development
 gem "figaro", ">= 0.6.3"
 gem "better_errors", ">= 0.7.2", :group => :development
 gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri_19, :rbx]
+
+gem "bootstrap-sass", ">= 2.1.1.0"
+# Connect to the Transmission API
+gem "transmission_api", :path => '/Users/Elentras/Projects/TransmissionApi'

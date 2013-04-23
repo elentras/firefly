@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b transmission_id:
+  = @torrent.transmission_id
+%p
+  %b name:
+  = @torrent.name
+%p
+  %b is_finished:
+  = @torrent.is_finished
+%p
+  %b rate_download:
+  = @torrent.rate_download
+%p
+  %b rate_upload:
+  = @torrent.rate_upload
+%p
+  %b percent_done:
+  = @torrent.percent_done
+%p
+  %b total_size:
+  = @torrent.total_size
+%p
+  %b user:
+  = @torrent.user
+/ %p
+/   %b Leechers:
+/   = @torrent.leechers
+/ %p
+/   %b Seeders:
+/   = @torrent.seeders
+
+= link_to 'Edit', edit_torrent_path(@torrent)
+\|
+= link_to 'Back', torrents_path
