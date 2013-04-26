@@ -1,6 +1,6 @@
 %h1 Listing torrents
 
-%table
+%table.table.table-bordered.table-striped.table-hover
   %tr
     %th Name
     %th Percent
@@ -8,14 +8,19 @@
 
 
   - @torrents.each do |torrent|
+    - percents = (torrent.percent_done * 100).round(2)
     %tr
       %td= torrent.name
-      %td= torrent.percent_done
       %td
-        = link_to 'Show', torrent
-        = link_to 'Edit', edit_torrent_path(torrent)
-        = link_to 'Destroy', torrent, method: :delete, data: { confirm: 'Are you sure?' }
+        .progress.progress-striped.active
+          .bar{ style: "width: #{percents}%;"}
+      %td= "#{percents} %"
+      %td
+        = link_to_controls(torrent)
+        = link_to 'Supprimer', torrent, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
 %br
 
-= link_to 'New Torrent', new_torrent_path
+= link_to new_torrent_path, class: 'btn btn-success' do
+  %i.icon-plus-sign
+  Ajouter

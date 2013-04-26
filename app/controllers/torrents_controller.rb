@@ -7,7 +7,6 @@ class TorrentsController < ApplicationController
   # GET /torrents.json
   def index
     @torrents = Torrent.all
-    puts "Torrents class #{@torrents.class}"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -86,7 +85,7 @@ class TorrentsController < ApplicationController
   # DELETE /torrents/1.json
   def destroy
     @torrent = Torrent.find(params[:id])
-    TransmissionApi::Torrent.destroy(@torrent.transmission_id) if @torrent.transmission_id
+    TransmissionApi::Torrent.destroy(@torrent.hash_string) if @torrent.hash_string.present?
     @torrent.destroy
 
     respond_to do |format|

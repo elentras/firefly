@@ -22,14 +22,16 @@ class Torrent
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   
-  field :transmission_id, type: String
-  field :hash_string, type: String
-  field :name, type: String
-  field :is_finished, type: Integer
-  field :rate_download, type: Integer
-  field :rate_upload, type:  Integer
-  field :percent_done, type: Float
-  field :total_size, type: Integer
+  field :transmission_id    , type: String
+  field :hash_string        , type: String
+  field :name               , type: String
+  field :is_finished        , type: Integer
+  field :rate_download      , type: Integer
+  field :rate_upload        , type: Integer
+  field :percent_done       , type: Float
+  field :total_size         , type: Integer
+  field :status             , type: String
+
   belongs_to   :user
 
   UPDATE_KEYS = [:percent_done, :total_size, :rate_upload, :rate_download, :is_finished]
@@ -45,7 +47,7 @@ class Torrent
 
   belongs_to :user  # This is only set for the first few days, so the administrator can police new uploads
   belongs_to :category
-
+  
   def get_transmission_infos
     file_path = "http://127.0.0.1:3000" + self.file_url
     result = TransmissionApi::Torrent.create(file_path)
