@@ -24,7 +24,7 @@
       .row-fluid
         - if user_signed_in?
           .span2= render 'layouts/navigation_side'
-          .span10= yield
+          .span10#body-yield= yield
         - else
           .span12= yield
   %footer

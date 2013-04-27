@@ -61,7 +61,7 @@ Firefly::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'example.com' }
+  config.action_mailer.default_url_options = { :host => 'elentras.com' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
@@ -70,13 +70,13 @@ Firefly::Application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "mail.gandi.net",
     port: 587,
-    domain: "example.com",
-    authentication: "plain",
+    domain: "elentras.com",
+    authentication: :login
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: "no-reply@elentras.com",
+    password: "Klingon3Pouce42BattleShip"
   }
 
 

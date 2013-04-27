@@ -29,8 +29,19 @@ $(document).ready(function() {
       target.text("Pause");
       target.data('action', 'stop');
     }
-
   }
+
+  function refresh_handler() {
+      function refresh() {
+         $.get('/torrents.js', null, function(data, textStatus) {
+
+          });
+      }
+      setInterval(refresh, 10000); //every 10 seconds
+  }
+ 
+  $(document).ready(refresh_handler);
+
   
 });
 

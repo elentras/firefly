@@ -21,5 +21,5 @@
 set :output, "#{path}/log/cron.log"
 
 every 1.minutes do
-  runner "Cron::torrent.update"
+  rake "cron:update", environment: "development"
 end

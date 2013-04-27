@@ -30,11 +30,11 @@ class Torrent
   field :rate_upload        , type: Integer
   field :percent_done       , type: Float
   field :total_size         , type: Integer
-  field :status             , type: String
+  field :status             , type: String, default: 'stop'
 
   belongs_to   :user
 
-  UPDATE_KEYS = [:percent_done, :total_size, :rate_upload, :rate_download, :is_finished]
+  UPDATE_KEYS = [:percent_done, :total_size, :rate_upload, :rate_download, :is_finished, :status]
 
   validates :file, presence: true
   
@@ -62,6 +62,23 @@ class Torrent
     id = force_id ? force_id : self.hash_string
     datas = TransmissionApi::Torrent.find(id)
     elements =  datas.reject { |k, v| !UPDATE_KEYS.include? k }
+    elements[:status] = convert_status(elements[:status])
     self.update_attributes(elements)
   end
+
+  private
+    def convert_status(status)
+      case status
+      when 0
+        'stop'
+      when 1
+        'wtf1'
+      when 2
+        'wtf2'
+      when 6
+        'finished'
+      when 4
+        'start'
+      end
+    end
 end

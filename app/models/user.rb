@@ -5,7 +5,7 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :invitable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -29,6 +29,15 @@ class User
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
   field :theme,              type: String, default: "cerulean"
+
+  # Invitable
+  field :invitation_token, type: String
+  field :invitation_sent_at, type: Time
+  field :invitation_accepted_at, type: Time
+  field :invitation_limit, type: Integer
+
+  index( {invitation_token: 1}, {:background => true} )
+  index( {invitation_by_id: 1}, {:background => true} )
 
   mount_uploader :avatar, AvatarUploader
 

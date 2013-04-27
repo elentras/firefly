@@ -14,11 +14,31 @@
         Themes
         %b.caret
       %ul.dropdown-menu#theme-selector
-        %li= link_to "Amelia", "/users/switch_theme/amelia"
-        %li= link_to "Cerulean", "/users/switch_theme/cerulean"
-        %li= link_to "Cyborg", "/users/switch_theme/cyborg"
-        %li= link_to "Superhero", "/users/switch_theme/superhero"
-        %li= link_to "United", "/users/switch_theme/united"
+        %li
+          = link_to "/users/switch_theme/amelia" do
+            - if current_user.theme == 'amelia'
+              %i.icon-ok
+            Amelia
+        %li
+          = link_to "/users/switch_theme/cerulean" do
+            - if current_user.theme == 'cerulean'
+              %i.icon-ok
+            Cerulean
+        %li
+          = link_to "/users/switch_theme/cyborg" do
+            - if current_user.theme == 'cyborg'
+              %i.icon-ok
+            Cyborg
+        %li
+          = link_to "/users/switch_theme/superhero" do
+            - if current_user.theme == 'superhero'
+              %i.icon-ok
+            Superhero
+        %li
+          = link_to "/users/switch_theme/united" do
+            - if current_user.theme == 'united'
+              %i.icon-ok
+            United
   - else
     %li
       = link_to 'Sign up', new_user_registration_path

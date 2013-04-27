@@ -1,0 +1,9 @@
+%h3 Membres
+
+%ul
+  - @users.each do |user|
+    %li
+      = link_to user.name, user 
+      = user.created_at.to_date
+
+= link_to "Envoyer une invitation", new_user_invitation_path
