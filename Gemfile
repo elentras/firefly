@@ -35,6 +35,6 @@ gem "cancan"
 gem 'whenever', :require => false
 
 # Connect to the Transmission API
-gem "transmission_api", :path => '/Users/Elentras/Projects/TransmissionApi'
+gem "transmission_api"
 
 gem 'unicorn'
