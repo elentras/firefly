@@ -73,7 +73,7 @@ Firefly::Application.configure do
     address: "mail.gandi.net",
     port: 587,
     domain: "elentras.com",
-    authentication: :login
+    authentication: :login,
     enable_starttls_auto: true,
     user_name: "no-reply@elentras.com",
     password: "Klingon3Pouce42BattleShip"
