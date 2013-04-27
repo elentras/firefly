@@ -47,5 +47,9 @@ namespace :deploy do
       exit
     end
   end
+  desc "cancel migration"
+  task :migrate do
+    
+  end
   before "deploy", "deploy:check_revision"
 end
