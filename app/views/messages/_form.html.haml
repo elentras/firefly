@@ -1,0 +1,13 @@
+= form_for @message do |f|
+  - if @message.errors.any?
+    #error_explanation
+      %h5
+        = pluralize(@message.errors.count, "error")
+        prohibited this message from being saved:
+      %ul
+        - @message.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.text_area :content, rows: 3, class: 'span12'
+  = link_to_submit( class: 'btn btn-success' ) do
+    %i.icon-envelope

@@ -1,7 +1,8 @@
 .sidebar-nav
-  .well
-    %ul.nav.nav-list
-      %li.nav-header
-        Main
-      %br
-      = link_to('Tableau de bord', torrents_path, {:icon => "icon-home"})
+  %h3 ShootBox
+  .well= render 'messages/form'
+  - @messages.each do |msg|
+    .well
+      = msg.user.name
+      \:
+      = msg.content

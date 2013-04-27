@@ -54,7 +54,8 @@ class TorrentsController < ApplicationController
     @torrent = Torrent.new(torrent)
 
     respond_to do |format|
-      if @torrent.save!
+      if @torrent.valid?
+        @torrent.save!
         @torrent.get_transmission_infos
         puts @torrent.to_yaml
         format.html { redirect_to torrents_path, notice: 'Torrent was successfully created.' }

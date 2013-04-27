@@ -61,4 +61,5 @@ class User
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :avatar, :avatar_cache
   has_many :torrents
   has_many :comments
+  has_many :messages
 end
