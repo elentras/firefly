@@ -28,6 +28,9 @@ class User
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
+  field :theme,              type: String, default: "cerulean"
+
+  mount_uploader :avatar, AvatarUploader
 
   ## Confirmable
   # field :confirmation_token,   :type => String
@@ -46,7 +49,7 @@ class User
   index({ email: 1 }, { unique: true, background: true })
   field :name, :type => String
   validates_presence_of :name
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
-  
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :avatar, :avatar_cache
   has_many :torrents
+  has_many :comments
 end

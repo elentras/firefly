@@ -1,0 +1,5 @@
+#comments
+  - comments.each do |comment|
+    .comment
+      %b= "#{comment.user.name if comment.user.present?} a dit :"
+      %p= simple_format comment.content

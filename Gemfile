@@ -26,5 +26,8 @@ gem "better_errors", ">= 0.7.2", :group => :development
 gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri_19, :rbx]
 
 gem "bootstrap-sass", ">= 2.1.1.0"
+
+gem 'whenever', :require => false
+
 # Connect to the Transmission API
 gem "transmission_api", :path => '/Users/Elentras/Projects/TransmissionApi'

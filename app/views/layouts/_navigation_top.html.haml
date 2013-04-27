@@ -8,7 +8,15 @@
     %li
       = link_to 'Torrents', torrents_path
     %li
-      = link_to 'Admin', users_path
+      = link_to 'Users', users_path
+    %li.dropdown
+      = link_to "#", class: "dropdown-toggle", data: {toggle:"dropdown"} do
+        Themes
+        %b.caret
+      %ul.dropdown-menu#theme-selector
+        %li= link_to "Cerulean", "/users/switch_theme/cerulean"
+        %li= link_to "Cyborg", "/users/switch_theme/cyborg"
+        %li= link_to "Superhero", "/users/switch_theme/superhero"
   - else
     %li
       = link_to 'Sign up', new_user_registration_path

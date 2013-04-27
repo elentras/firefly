@@ -47,7 +47,8 @@ class Torrent
 
   belongs_to :user  # This is only set for the first few days, so the administrator can police new uploads
   belongs_to :category
-  
+  has_many :comments, as: :commentable
+
   def get_transmission_infos
     file_path = "http://127.0.0.1:3000" + self.file_url
     result = TransmissionApi::Torrent.create(file_path)

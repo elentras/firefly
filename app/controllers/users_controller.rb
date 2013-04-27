@@ -9,4 +9,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def switch_theme
+    current_user.update_attribute(:theme, params[:name])
+    redirect_to session[:previous_url]
+  end
+
 end

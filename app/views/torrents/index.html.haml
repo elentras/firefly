@@ -2,23 +2,48 @@
 
 %table.table.table-bordered.table-striped.table-hover
   %tr
-    %th Name
-    %th Percent
+    %th Nom
+    %th Utilisateur
+    %th{colspan: 2} Avancement
     %th
 
 
   - @torrents.each do |torrent|
     - percents = (torrent.percent_done * 100).round(2)
     %tr
-      %td= torrent.name
       %td
-        .progress.progress-striped.active
+        = link_to torrent do
+          = torrent.name
+          %br
+          .row-fluid
+            .span3
+              %i.icon-comment
+              = torrent.comments.count
+            .span3
+              %i.icon-warning-sign
+              Porn Inside
+            .span3
+              %i.icon-thumbs-up
+              5
+              %i.icon-thumbs-down
+              1
+            .span3
+              %i.icon-eye-open
+              %i.icon-eye-close
+      %td
+        = torrent.user.name if torrent.user.present?
+      %td
+        .text-center= "#{percents} %"
+        .progress.progress-warning
           .bar{ style: "width: #{percents}%;"}
-      %td= "#{percents} %"
+      %td
+        - current_size = torrent.percent_done * torrent.total_size
+        = number_to_human_size(current_size, :precision => 2) 
+        \/
+        = number_to_human_size(torrent.total_size, :precision => 2) 
       %td
         = link_to_controls(torrent)
         = link_to 'Supprimer', torrent, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-
 %br
 
 = link_to new_torrent_path, class: 'btn btn-success' do

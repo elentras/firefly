@@ -1,35 +1,47 @@
 %p#notice= notice
 
-%p
-  %b transmission_id:
-  = @torrent.transmission_id
-%p
-  %b name:
-  = @torrent.name
-%p
-  %b is_finished:
-  = @torrent.is_finished
-%p
-  %b rate_download:
-  = @torrent.rate_download
-%p
-  %b rate_upload:
-  = @torrent.rate_upload
-%p
-  %b percent_done:
-  = @torrent.percent_done
-%p
-  %b total_size:
-  = @torrent.total_size
-%p
-  %b user:
-  = @torrent.user
+.row-fluid
+  .span9
+    %p
+      %b transmission_id:
+      = @torrent.transmission_id
+    %p
+      %b name:
+      = @torrent.name
+    %p
+      %b is_finished:
+      = @torrent.is_finished
+    %p
+      %b rate_download:
+      = @torrent.rate_download
+    %p
+      %b rate_upload:
+      = @torrent.rate_upload
+    %p
+      %b percent_done:
+      = @torrent.percent_done
+    %p
+      %b total_size:
+      = number_to_human_size(@torrent.total_size, :precision => 2) 
+
+  .span3
+    %p
+      %b user:
+      - if @torrent.user.present?
+        = image_tag @torrent.user.avatar.large
+        = @torrent.user.name
+    
 / %p
 /   %b Leechers:
 /   = @torrent.leechers
 / %p
 /   %b Seeders:
 /   = @torrent.seeders
+
+%p
+  %h2 Comments
+  = render partial: "comments/comments", locals: { comments: @torrent.comments}
+  = render partial: "comments/form", locals: { commentable: @torrent}
 
 = link_to 'Edit', edit_torrent_path(@torrent)
 \|
