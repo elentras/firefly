@@ -51,7 +51,7 @@ class Torrent
 
   def get_transmission_infos
     file_path = "http://127.0.0.1:3000" + self.file_url
-    result = TransmissionApi::Torrent.create(file_path)
+    result = Astrobot::Torrent.create(file_path)
 
     proper_params = {transmission_id: result['id'], hash_string: result['hashString'] }
     self.update_attributes(proper_params)
@@ -60,7 +60,7 @@ class Torrent
   
   def update_infos(force_id = nil)
     id = force_id ? force_id : self.hash_string
-    datas = TransmissionApi::Torrent.find(id)
+    datas = Astrobot::Torrent.find(id)
     elements =  datas.reject { |k, v| !UPDATE_KEYS.include? k }
     elements[:status] = convert_status(elements[:status])
     self.update_attributes(elements)

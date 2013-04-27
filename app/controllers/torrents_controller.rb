@@ -87,7 +87,7 @@ class TorrentsController < ApplicationController
   # DELETE /torrents/1.json
   def destroy
     @torrent = Torrent.find(params[:id])
-    TransmissionApi::Torrent.destroy(@torrent.hash_string) if @torrent.hash_string.present?
+    Astrobot::Torrent.destroy(@torrent.hash_string) if @torrent.hash_string.present?
     @torrent.destroy
 
     respond_to do |format|

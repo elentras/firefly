@@ -35,6 +35,6 @@ gem "cancan"
 gem 'whenever', :require => false
 
 # Connect to the Transmission API
-gem "transmission_api", :git => "https://github.com/elentras/TransmissionApi.git"
+gem "astrobot"
 
 gem 'unicorn'

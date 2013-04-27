@@ -5,13 +5,6 @@ GIT
     mini_magick (3.4)
       subexec (~> 0.2.1)
 
-GIT
-  remote: https://github.com/elentras/TransmissionApi.git
-  revision: d1f883368ab5617c8ea51dcd1d4b11a260f5992d
-  specs:
-    transmission_api (0.0.5)
-      httparty (= 0.9.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -44,6 +37,8 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.4)
     arel (3.0.2)
+    astrobot (0.0.5)
+      httparty (= 0.9.0)
     bcrypt-ruby (3.0.1)
     better_errors (0.8.0)
       coderay (>= 1.0.0)
@@ -246,6 +241,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  astrobot
   better_errors (>= 0.7.2)
   binding_of_caller (>= 0.7.1)
   bootstrap-sass (>= 2.1.1.0)
@@ -271,7 +267,6 @@ DEPENDENCIES
   rails (= 3.2.13)
   rspec-rails (>= 2.12.2)
   sass-rails (~> 3.2.3)
-  transmission_api!
   uglifier (>= 1.0.3)
   unicorn
   whenever
