@@ -1,22 +1,11 @@
-%p#notice= notice
+#notice= notice
 
 .row-fluid
-  .span9
+  .span9.well
     %p
-      %b transmission_id:
-      = @torrent.transmission_id
-    %p
-      %b name:
+      = "##{@torrent.transmission_id} - "
       = @torrent.name
-    %p
-      %b is_finished:
-      = @torrent.is_finished
-    %p
-      %b rate_download:
-      = @torrent.rate_download
-    %p
-      %b rate_upload:
-      = @torrent.rate_upload
+
     %p
       %b percent_done:
       = @torrent.percent_done
@@ -24,7 +13,7 @@
       %b total_size:
       = number_to_human_size(@torrent.total_size, :precision => 2) 
 
-  .span3
+  .span3.well
     %p
       %b user:
       - if @torrent.user.present?
@@ -38,11 +27,8 @@
 /   %b Seeders:
 /   = @torrent.seeders
 
-%p
-  %h2 Comments
-  = render partial: "comments/comments", locals: { comments: @torrent.comments}
-  = render partial: "comments/form", locals: { commentable: @torrent}
+%h2 Comments
+= render partial: "comments/comments", locals: { comments: @torrent.comments}
+= render partial: "comments/form", locals: { commentable: @torrent}
 
-= link_to 'Edit', edit_torrent_path(@torrent)
-\|
-= link_to 'Back', torrents_path
+.pull-right= link_to 'Back', torrents_path, class: 'btn'

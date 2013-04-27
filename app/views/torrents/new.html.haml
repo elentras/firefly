@@ -1,5 +1,6 @@
-%h1 New torrent
+.row-fluid
+  .span12
+    %h1 New torrent
+    .well= render 'form'
 
-= render 'form'
-
-= link_to 'Back', torrents_path
+= link_to 'Back', torrents_path, class: "btn"

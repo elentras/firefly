@@ -9,6 +9,6 @@
 
   .field
     = f.hidden_field :user_id, value: comment.user.id.to_s
-    = f.text_area :content, rows: 8
+    = f.text_area :content, rows: 12, cols: 50
   .actions
     = f.submit

@@ -6,7 +6,7 @@
   %meta{:content => "FireFly", :name => "description"}
   %meta{:content => "Elentras", :name => "author"}
   = stylesheet_link_tag "application", :media => "all"
-  = stylesheet_link_tag "themes/#{current_user.theme}" if current_user
+  = stylesheet_link_tag(current_user ? "themes/#{current_user.theme}" : "bootstrap" )
   = csrf_meta_tags
   = yield(:head)
 
@@ -22,7 +22,10 @@
         .span12
           = render 'layouts/messages'
       .row-fluid
-        .span2= render 'layouts/navigation_side'
-        .span10= yield
+        - if user_signed_in?
+          .span2= render 'layouts/navigation_side'
+          .span10= yield
+        - else
+          .span12= yield
   %footer
     = javascript_include_tag "application"

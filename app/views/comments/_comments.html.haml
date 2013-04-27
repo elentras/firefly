@@ -1,5 +1,12 @@
-#comments
-  - comments.each do |comment|
-    .comment
-      %b= "#{comment.user.name if comment.user.present?} a dit :"
-      %p= simple_format comment.content
+.row-fluid
+  .span12
+    - comments.each do |comment|
+      .comment.well
+        .row
+          .span2
+            %h4.text-center= "#{comment.user.name if comment.user.present?}"
+            %br
+            .text-center
+              = image_tag(comment.user.avatar.large)
+          .span10
+            %p= simple_format comment.content
