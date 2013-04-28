@@ -1,22 +1,23 @@
 $(document).ready(function() {
-  $('.torrent_controls').click( function() {
-    var target = $(this);
-    console.log("yop !");
-    var id = target.data('id');
-    var action = target.data('action');
-    var url = '/torrents/'+ id + '/controls';
+  if ($('.torrent_controls').size() > 0) {
+    $('.torrent_controls').click( function() {
+      var target = $(this);
+      console.log("yop !");
+      var id = target.data('id');
+      var action = target.data('action');
+      var url = '/torrents/'+ id + '/controls';
 
-    $.get(url, {do: action}, function(data, textStatus, xhr) {
-      //optional stuff to do after success
-      if (data.result == 'success') {
-        switch_class(target, action);
-      } else {
-        alert("et merdeuh !");
-      }
-    });
+      $.get(url, {do: action}, function(data, textStatus, xhr) {
+        //optional stuff to do after success
+        if (data.result == 'success') {
+          switch_class(target, action);
+        } else {
+          alert("et merdeuh !");
+        }
+      });
   
-  });  
-  
+    });  
+  }
   var switch_class = function (target, action) {
     if (action == 'stop') {
       target.removeClass('btn-warning');
