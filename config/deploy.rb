@@ -35,7 +35,7 @@ namespace :deploy do
       end
     end
   end
-  after "deploy:setup", "assets:precompile"
+  after "deploy:symlink_config", "deploy:assets:precompile"
 
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/conf.d/#{application}"
@@ -48,7 +48,8 @@ namespace :deploy do
 
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/mongoid.yml #{release_path}/config/mongoid.yml"
-    run "ln -s #{shared_path}/config/gaston #{current_path}/config/gaston"
+    run "ln -s #{shared_path}/gaston #{current_path}/config/gaston"
+    run "ln -s #{shared_path}/assets #{current_path}/public/assets"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
