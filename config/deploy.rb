@@ -35,6 +35,7 @@ namespace :deploy do
       end
     end
   end
+  after "deploy:setup", "assets:precompile"
 
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/conf.d/#{application}"
