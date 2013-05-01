@@ -7,13 +7,13 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem "bootstrap-sass", '~> 2.3.1.0'
+  gem 'turbo-sprockets-rails3'
 end
 
 gem 'jquery-rails'
 gem "haml"
 # gem "haml-rails"
 
-gem 'bson_ext'
 gem "mongoid", ">= 3.1.2"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick', :git => 'git://github.com/probablycorey/mini_magick.git'
