@@ -6,5 +6,5 @@ ActionMailer::Base.smtp_settings = {
  user_name:       Gaston.mailer.user_name,
  password:        Gaston.mailer.password,
  enable_starttls_auto: true,
- authentication: :login
+ authentication: 'plain'
 }
