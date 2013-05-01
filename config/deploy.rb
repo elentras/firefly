@@ -1,5 +1,5 @@
 require "bundler/capistrano"
-
+load 'deploy/assets'
 server "elentras.com", :web, :app, :db, primary: true
 
 set :application, "firefly"

@@ -13,8 +13,8 @@ gem 'jquery-rails'
 gem "haml"
 # gem "haml-rails"
 
-gem "mongoid", ">= 3.1.2"
 gem 'bson_ext'
+gem "mongoid", ">= 3.1.2"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick', :git => 'git://github.com/probablycorey/mini_magick.git'
 
