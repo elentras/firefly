@@ -69,16 +69,4 @@ Firefly::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
 
-  config.action_mailer.smtp_settings = {
-    address: "mail.gandi.net",
-    port: 587,
-    domain: "elentras.com",
-    authentication: :login,
-    enable_starttls_auto: true,
-    user_name: "no-reply@elentras.com",
-    password: "Klingon3Pouce42BattleShip"
-  }
-
-
-
 end
