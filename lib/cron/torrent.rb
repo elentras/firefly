@@ -7,10 +7,10 @@ module Cron::Torrent
     
     @trans_torrents.each do |tt|
       begin
-        torrent = Astrobot.find_by(transmission_id: tt[:id])
+        torrent = Torrent.find_by(transmission_id: tt[:id])
         torrent.update_infos if torrent
       rescue Exception => e
-        puts e.to_yaml
+        puts "#{e.message}\n#{e.backtrace}"
       end
     end
   end
