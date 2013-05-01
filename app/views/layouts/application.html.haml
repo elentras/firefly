@@ -6,7 +6,7 @@
   %meta{:content => "FireFly", :name => "description"}
   %meta{:content => "Elentras", :name => "author"}
   %meta{ name: 'viewport', content: "width=device-width, initial-scale=1.0"}
-  = stylesheet_link_tag "application", :media => "all"
+  = stylesheet_link_tag "application"
   =# stylesheet_link_tag "bootstrap-responsive.css"
   = stylesheet_link_tag(current_user ? "themes/#{current_user.theme}" : "bootstrap" )
   = csrf_meta_tags
