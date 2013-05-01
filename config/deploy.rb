@@ -31,7 +31,6 @@ namespace :deploy do
       run_locally "bundle exec rake assets:precompile"
       find_servers_for_task(current_task).each do |server|
         run_locally "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{server.host}:#{shared_path}"
-        run "ln -s #{shared_path}/assets #{current_path}/public/assets"
       end
     end
   end
