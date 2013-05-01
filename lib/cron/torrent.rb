@@ -10,7 +10,7 @@ module Cron::Torrent
         torrent = Torrent.find_by(transmission_id: tt[:id])
         torrent.update_infos if torrent
       rescue Exception => e
-        puts "#{e.message}\n#{e.backtrace}"
+        puts "#{e.message}\n{e.backtrace}"
       end
     end
   end

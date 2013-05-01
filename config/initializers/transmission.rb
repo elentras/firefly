@@ -1,9 +1,9 @@
 require 'astrobot'
 
 Astrobot.configure( {
-  url: 'http://127.0.0.1:9091/transmission/rpc',
+  url: Gaston.transmission.url,
   fields: Astrobot::TORRENT_FIELDS,
-  basic_auth: { :username => 'transuser', :password => 'transpass007' },
+  basic_auth: { :username => Gaston.transmission.username, :password => Gaston.transmission.password },
   session_id: "NOT-INITIALIZED",
-  debug_mode: true
+  debug_mode: Gaston.transmission.debug_mode
 })
