@@ -28,8 +28,8 @@ class Torrent
   field :is_finished        , type: Integer
   field :rate_download      , type: Integer
   field :rate_upload        , type: Integer
-  field :percent_done       , type: Float
-  field :total_size         , type: Integer
+  field :percent_done       , type: Float, default: ->{ 0.01 }
+  field :total_size         , type: Integer, default: ->{ 0 }
   field :status             , type: String, default: 'stop'
 
   belongs_to   :user

@@ -2,7 +2,6 @@ $(document).ready(function() {
   if ($('.torrent_controls').size() > 0) {
     $('.torrent_controls').click( function() {
       var target = $(this);
-      console.log("yop !");
       var id = target.data('id');
       var action = target.data('action');
       var url = '/torrents/'+ id + '/controls';
@@ -11,11 +10,8 @@ $(document).ready(function() {
         //optional stuff to do after success
         if (data.result == 'success') {
           switch_class(target, action);
-        } else {
-          alert("et merdeuh !");
         }
       });
-  
     });  
   }
   var switch_class = function (target, action) {
@@ -32,17 +28,16 @@ $(document).ready(function() {
     }
   }
 
-  function refresh_handler() {
-      function refresh() {
-         $.get('/torrents.js', null, function(data, textStatus) {
-
-          });
-      }
-      setInterval(refresh, 10000); //every 10 seconds
+if ($('.torrent_controls').size() > 0) {
+    function refresh_handler() {
+        function refresh() {
+           $.get('/torrents.js', null, function(data, textStatus) {
+           });
+        }
+        setInterval(refresh, 10000); //every 10 seconds
+    }
+    $(document).ready(refresh_handler);
   }
- 
-  $(document).ready(refresh_handler);
-
   
 });
 
