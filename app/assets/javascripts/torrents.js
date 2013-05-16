@@ -28,7 +28,7 @@ $(document).ready(function() {
     }
   }
 
-if ($('.torrent_controls').size() > 0) {
+  if ($('.torrent_controls').size() > 0) {
     function refresh_handler() {
         function refresh() {
            $.get('/torrents.js', null, function(data, textStatus) {
@@ -38,7 +38,28 @@ if ($('.torrent_controls').size() > 0) {
     }
     $(document).ready(refresh_handler);
   }
-  
+
+  $('.like_it').click( function() {
+    var id = $(this).parents('tr').attr('id');
+    likeable(id, 'like');
+   });
+
+  $('.unlike_it').click(  function() {
+    var id = $(this).parents('tr').attr('id');
+    likeable(id, 'unlike');
+  });
+
+  var update_likes = function(_this, result) {
+    var box = _this;
+    box.find('.like_it .counter').html(result[true]);
+    box.find('.unlike_it .counter').html(result[false]);
+  }
+  var likeable = function(id, action) {
+    var url = '/torrents/'+ id + '/' + action;
+
+    $.get(url, {}, function(data, textStatus, xhr) {
+      update_likes($("#"+id), data);
+    });
+  }
+
 });
-
-

@@ -23,8 +23,6 @@ gem 'mini_magick', :git => 'git://github.com/probablycorey/mini_magick.git'
 gem "devise", ">= 2.2.3"
 gem 'devise_invitable', '~> 1.1.0'
 
-gem "figaro", ">= 0.6.3"
-
 gem "capistrano"
 
 gem "cancan"

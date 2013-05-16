@@ -1,23 +1,31 @@
 - percents = (torrent.percent_done * 100).round(2)
-%tr
+%tr{ id: torrent.id}
   %td
-    = link_to torrent do
-      = torrent.name
     .row-fluid
-      .span3
+      .span1
         %i.icon-comment
         = torrent.comments.count
-      .span3
-        %i.icon-warning-sign
-        Porn Inside
-      .span3
-        %i.icon-thumbs-up
-        5
-        %i.icon-thumbs-down
-        1
-      .span3
-        %i.icon-eye-open
-        %i.icon-eye-close
+      .span11
+        = link_to torrent do
+          = torrent.name
+    .row-fluid
+      .span6
+        .btn.like_it
+          %i.icon-thumbs-up
+          %span.counter
+            &nbsp;
+            = torrent.likes.positives.count
+        .btn.unlike_it
+          %i.icon-thumbs-down
+          %span.counter
+            &nbsp;
+            = torrent.likes.negatives.count
+      .offset3.span3
+        - if torrent.porn_inside
+          %i.icon-warning-sign
+          Porn Inside
+        / %i.icon-eye-open
+        / %i.icon-eye-close
   %td
     = torrent.user.name if torrent.user.present?
   %td

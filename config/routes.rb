@@ -9,6 +9,9 @@ Firefly::Application.routes.draw do
     resources :torrents do
       resource :controls
       resources :comments
+      match "/like",    on: :member, controller: :likes, action: :like
+      match "/unlike",  on: :member, controller: :likes, action: :unlike
+      
     end
     resources :users do
       match "switch_theme/:name", on: :collection, action: :switch_theme

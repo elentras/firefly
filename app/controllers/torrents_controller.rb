@@ -7,7 +7,7 @@ class TorrentsController < ApplicationController
   # GET /torrents.json
   def index
     @torrents = Torrent.all
-
+    Rails.logger.info "RAILS_ENV : #{Rails.env}"
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @torrents }
@@ -57,7 +57,6 @@ class TorrentsController < ApplicationController
       if @torrent.valid?
         @torrent.save!
         @torrent.get_transmission_infos
-        puts @torrent.to_yaml
         format.html { redirect_to torrents_path, notice: 'Torrent was successfully created.' }
         format.json { render json: @torrent, status: :created, location: @torrent }
       else
@@ -97,12 +96,12 @@ class TorrentsController < ApplicationController
   end
 
   private
-    
+
     def find_torrent
       @torrent = Torrent.find(params[:id]) if params[:id]
       raise ActiveRecord::RecordNotFound unless @torrent
     end
-    
+
     def find_or_build_torrent
       @torrent_file = params[:id] ? @torrent.torrent_files.find(params[:id]) : @torrent.torrent_files.build(params[:torrent_file])
     end
@@ -110,7 +109,7 @@ class TorrentsController < ApplicationController
     def render_no_connection
       redirect_to new_torrent_path, alert: "Serveur Transmission injoignable"
     end
-    
+
     def render_duplicate_torrent
       redirect_to new_torrent_path, alert: "Fichier torrent deja present"
     end
