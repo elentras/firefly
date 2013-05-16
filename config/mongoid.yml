@@ -86,3 +86,4 @@ production:
         - localhost:27017
       options:
         consistency: :strong
+        raise_not_found_error: false
