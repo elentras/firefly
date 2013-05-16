@@ -31,15 +31,17 @@ class Torrent
   field :percent_done       , type: Float, default: ->{ 0.01 }
   field :total_size         , type: Integer, default: ->{ 0 }
   field :status             , type: String, default: 'stop'
+  field :porn_inside        , type: Boolean, default: ->{false}
 
-  belongs_to   :user
+  belongs_to    :user
+  has_many      :likes
 
   UPDATE_KEYS = [:percent_done, :total_size, :rate_upload, :rate_download, :is_finished, :status]
 
   validates :file, presence: true
-  
+
   mount_uploader :file, TorrentFileUploader
-  
+
   # attr_accessible :name, :remote_file_url, :launched_at, :finished_at,
 #     :transmission_id, :status, :rating_download, :rating_upload, :size_done,
 #     :percant_done, :size_total, :user_id, :file, :description, :category_id,
@@ -50,35 +52,37 @@ class Torrent
   has_many :comments, as: :commentable
 
   def get_transmission_infos
-    file_path = "http://127.0.0.1:3000" + self.file_url
+    file_path = Gaston.transmission.domain + self.file_url
     result = Astrobot::Torrent.create(file_path)
 
     proper_params = {transmission_id: result['id'], hash_string: result['hashString'] }
     self.update_attributes(proper_params)
     self.update_infos(result['hashString'])
   end
-  
-  def update_infos(force_id = nil)
+
+  def update_infos(force_id = nil, options)
     id = force_id ? force_id : self.hash_string
     datas = Astrobot::Torrent.find(id)
     elements =  datas.reject { |k, v| !UPDATE_KEYS.include? k }
     elements[:status] = convert_status(elements[:status])
     self.update_attributes(elements)
+    self
   end
 
-  private
-    def convert_status(status)
-      case status
-      when 0
-        'stop'
-      when 1
-        'wtf1'
-      when 2
-        'wtf2'
-      when 6
-        'finished'
-      when 4
-        'start'
-      end
+  def convert_status(status)
+    case status
+    when [0, 16]
+      'paused'
+    when 3
+      'queued'
+    when 2
+      'validating'
+    when [6, 8]
+      'finished'
+    when 4
+      'start'
+    else
+      status
     end
+  end
 end
