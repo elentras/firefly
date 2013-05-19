@@ -29,7 +29,7 @@ gem "cancan"
 gem 'whenever', :require => false
 
 # Connect to the Transmission API
-gem "astrobot"
+gem "astrobot", '>= 0.1.4'
 
 gem 'unicorn'
 
