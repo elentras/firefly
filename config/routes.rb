@@ -1,8 +1,6 @@
 Firefly::Application.routes.draw do
-  resources :messages
-  
   devise_for :users
-  
+
   root :to => 'torrents#index'
   authenticated :user do
     root :to => 'torrents#index'
@@ -13,6 +11,7 @@ Firefly::Application.routes.draw do
       match "/unlike",  on: :member, controller: :likes, action: :unlike
       
     end
+    resources :messages
     resources :users do
       match "switch_theme/:name", on: :collection, action: :switch_theme
     end

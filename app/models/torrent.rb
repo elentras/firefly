@@ -41,7 +41,7 @@ class Torrent
   validates :file, presence: true
 
   mount_uploader :file, TorrentFileUploader
-
+  default_scope desc(:created_at)
   # attr_accessible :name, :remote_file_url, :launched_at, :finished_at,
 #     :transmission_id, :status, :rating_download, :rating_upload, :size_done,
 #     :percant_done, :size_total, :user_id, :file, :description, :category_id,
@@ -53,11 +53,20 @@ class Torrent
 
   def get_transmission_infos
     file_path = Gaston.transmission.domain + self.file_url
-    result = Astrobot::Torrent.create(file_path)
+    Rails.logger.debug "file_path : #{file_path}"
+    torrent_dir = self.torrent_dir
+    result = Astrobot::Torrent.create(file_path, torrent_dir)
 
     proper_params = {transmission_id: result['id'], hash_string: result['hashString'] }
     self.update_attributes(proper_params)
     self.update_infos(result['hashString'])
+  end
+
+  def torrent_dir
+    formatted_name = self.user.name.downcase.gsub(/[^a-z0-9]+/i, '_')
+    path = Gaston.transmission.download_dir + formatted_name
+    Rails.logger.debug "path : #{path}"
+    path
   end
 
   def update_infos(force_id = nil, options)

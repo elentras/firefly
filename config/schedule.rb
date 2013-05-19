@@ -21,5 +21,5 @@
 set :output, "#{path}/log/cron.log"
 
 every 1.minutes do
-  rake "cron:update", environment: "development"
+  rake "cron:update", environment: "production"
 end
