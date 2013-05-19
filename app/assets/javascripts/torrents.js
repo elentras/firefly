@@ -1,4 +1,3 @@
-$(document).ready(function() {
   if ($('.torrent_controls').size() > 0) {
     $('.torrent_controls').click( function() {
       var target = $(this);
@@ -62,4 +61,3 @@ $(document).ready(function() {
     });
   }
 
-});
