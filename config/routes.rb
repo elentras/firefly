@@ -4,12 +4,12 @@ Firefly::Application.routes.draw do
   root :to => 'torrents#index'
   authenticated :user do
     root :to => 'torrents#index'
+    resources :ideas
     resources :torrents do
       resource :controls
       resources :comments
       match "/like",    on: :member, controller: :likes, action: :like
       match "/unlike",  on: :member, controller: :likes, action: :unlike
-      
     end
     resources :messages
     resources :users do

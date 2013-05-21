@@ -31,15 +31,15 @@
   %td
     .row_fluid
       .span12
-        .text-center= "#{percents} %"
+        .text-center= number_to_percentage(percents, :precision => 0)  
         .progress.progress-warning
           .bar{ style: "width: #{percents}%;"}
     .row_fluid
       .span12
         - current_size = torrent.percent_done * torrent.total_size
-        = number_to_human_size(current_size, :precision => 2) 
+        = number_to_human_size(current_size, :precision => 2, formats: :short)
         \/
-        = number_to_human_size(torrent.total_size, :precision => 2) 
+        = number_to_human_size(torrent.total_size, :precision => 2, formats: :short)
   %td
     = link_to_controls(torrent)
     = link_to 'Supprimer', torrent, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

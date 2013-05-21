@@ -1,5 +1,6 @@
 require "bundler/capistrano"
-
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 server "elentras.com", :web, :app, :db, primary: true
 
 set :application, "firefly"
