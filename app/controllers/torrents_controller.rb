@@ -7,7 +7,6 @@ class TorrentsController < ApplicationController
   # GET /torrents.json
   def index
     @torrents = Torrent.all
-    Rails.logger.info "RAILS_ENV : #{Rails.env}"
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @torrents }
