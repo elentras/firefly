@@ -1,3 +1,5 @@
+require 'mongo'
+
 class GridfsController < ActionController::Metal
   def serve
     gridfs_path = env["PATH_INFO"].gsub("/uploads/", "/tmp/uploads/")

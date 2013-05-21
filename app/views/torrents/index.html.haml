@@ -1,8 +1,8 @@
 .row-fluid
   .span9
-    %h1 Listing torrents
+    %h2.pull-left Listing torrents
   .span3
-    = link_to new_torrent_path, class: 'btn btn-success' do
+    = link_to new_torrent_path, class: 'btn btn-success pull-right' do
       %i.icon-plus-sign
       Ajouter
 
@@ -11,7 +11,7 @@
     %tr
       %th Nom
       %th Utilisateur
-      %th{colspan: 2} Avancement
+      %th Avancement
       %th
   %tbody#torrents-index
     - @torrents.each do |torrent|

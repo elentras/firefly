@@ -29,14 +29,17 @@
   %td
     = torrent.user.name if torrent.user.present?
   %td
-    .text-center= "#{percents} %"
-    .progress.progress-warning
-      .bar{ style: "width: #{percents}%;"}
-  %td
-    - current_size = torrent.percent_done * torrent.total_size
-    = number_to_human_size(current_size, :precision => 2) 
-    \/
-    = number_to_human_size(torrent.total_size, :precision => 2) 
+    .row_fluid
+      .span12
+        .text-center= "#{percents} %"
+        .progress.progress-warning
+          .bar{ style: "width: #{percents}%;"}
+    .row_fluid
+      .span12
+        - current_size = torrent.percent_done * torrent.total_size
+        = number_to_human_size(current_size, :precision => 2) 
+        \/
+        = number_to_human_size(torrent.total_size, :precision => 2) 
   %td
     = link_to_controls(torrent)
     = link_to 'Supprimer', torrent, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
