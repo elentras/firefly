@@ -3,10 +3,10 @@ set -e
 
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
-APP_ROOT=/data/www/firefly/current
-PID=$APP_ROOT/tmp/pids/unicorn.pid
+APP_ROOT=/home/elentras/apps/firefly/current
+PID=$APP_ROOT/tmp/pids/unicorn_firefly.pid
 CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
-AS_USER=deploy
+AS_USER=elentras
 set -u
 
 OLD_PIN="$PID.oldbin"
@@ -72,4 +72,3 @@ reopen-logs)
   echo >&2 "Usage: $0 <start|stop|restart|upgrade|force-stop|reopen-logs>"
   exit 1
   ;;
-esac
